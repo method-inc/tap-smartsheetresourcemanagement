@@ -1,0 +1,42 @@
+from singer_sdk import typing as th
+
+# Example:
+# {'id': 987654321,
+#  'allocation_mode': 'percentage',
+#  'user_id': 123456789,
+#  'assignable_id': 987654321,
+#  'ends_at': '2022-12-31',
+#  'starts_at': '2022-01-01',
+#  'repetition_id': None,
+#  'created_at': '2022-01-01T00:00:00Z',
+#  'updated_at': '2022-01-01T00:00:00Z',
+#  'all_day_assignment': False,
+#  'resource_request_id': None,
+#  'percent': 0.75,
+#  'bill_rate': 200.0,
+#  'bill_rate_id': 123456789,
+#  'status': None,
+#  'description': 'Fake Task',
+#  'status_option_id': 987654321,
+#  'note': None}
+
+schema = th.PropertiesList(
+    th.Property("id", th.IntegerType),
+    th.Property("allocation_mode", th.StringType),
+    th.Property("user_id", th.IntegerType),
+    th.Property("assignable_id", th.IntegerType),
+    th.Property("ends_at", th.StringType),
+    th.Property("starts_at", th.StringType),
+    th.Property("repetition_id", th.IntegerType),
+    th.Property("created_at", th.DateTimeType),
+    th.Property("updated_at", th.DateTimeType),
+    th.Property("all_day_assignment", th.BooleanType),
+    th.Property("resource_request_id", th.IntegerType),
+    th.Property("percent", th.NumberType),
+    th.Property("bill_rate", th.NumberType),
+    th.Property("bill_rate_id", th.IntegerType),
+    th.Property("status", th.StringType),
+    th.Property("description", th.StringType),
+    th.Property("status_option_id", th.IntegerType),
+    th.Property("note", th.StringType),
+).to_dict()
