@@ -1,6 +1,6 @@
 """Tests standard tap features using the built-in SDK tests library."""
 
-import datetime
+import datetime, os
 
 from singer_sdk.testing import get_tap_test_class
 
@@ -8,7 +8,7 @@ from tap_smartsheetresourcemanagement.tap import TapSmartsheetResourceManagement
 
 SAMPLE_CONFIG = {
     "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
-    # TODO: Initialize minimal tap config
+    "auth_token": os.getenv("SSRM_AUTH_TOKEN"),
 }
 
 

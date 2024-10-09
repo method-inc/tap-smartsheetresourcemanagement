@@ -29,15 +29,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      SSRM_AUTH_TOKEN: ${{secrets.SSRM_AUTH_TOKEN}}
     strategy:
       fail-fast: false
       matrix:
         python-version:
-        - "3.8"
         - "3.9"
-        - "3.10"
-        - "3.11"
-        - "3.12"
+        # - "3.10"
+        # - "3.11"
+        # - "3.12"
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
