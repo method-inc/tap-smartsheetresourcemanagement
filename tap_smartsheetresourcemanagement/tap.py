@@ -11,6 +11,7 @@ class TapSmartsheetResourceManagement(Tap):
     """SmartsheetResourceManagement tap class."""
 
     name = "tap-smartsheetresourcemanagement"
+    capabilities = ["discover", "catalog", "state", "properties"]
 
     config_jsonschema = th.PropertiesList(
         th.Property(
