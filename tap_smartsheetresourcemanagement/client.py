@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import sys
+import os
 from typing import TYPE_CHECKING, Any, Iterable
 from urllib.parse import parse_qsl
 
@@ -25,6 +26,8 @@ if TYPE_CHECKING:
 # TODO: Delete this is if not using json files for schema definition
 # SCHEMAS_DIR = importlib_resources.files(__package__) / "schemas"
 API_VERSION = "v1"
+
+IS_INCREMENTAL = os.getenv("IS_INCREMENTAL", "False").lower() == "true"
 
 logging.basicConfig(level=logging.INFO)
 
@@ -165,7 +168,7 @@ class SmartsheetResourceManagementStream(RESTStream):
         row_updated_at = row.get(self.replication_key)
         assert row_updated_at is not None, "Row updated_at is None in post_process"
         
-        if row_updated_at <= starting_timestamp.isoformat():
+        if row_updated_at <= starting_timestamp.isoformat() and IS_INCREMENTAL:
             return None
         
         logging.debug(f"Row id: {row_id}\n")
